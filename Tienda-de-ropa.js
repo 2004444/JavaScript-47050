@@ -5,7 +5,7 @@ function TiendaDeRopa(){
 
 
       switch (comando) {
-        case "salir":
+        case "Salir":
           alert("cerrando tienda de ropa...")
           break;
         default:
@@ -23,5 +23,3 @@ function TiendaDeRopa(){
           }
           break;}}
 
-
-TiendaDeRopa()

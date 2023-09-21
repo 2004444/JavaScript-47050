@@ -4,12 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Tienda Og's</title>
+  <link rel="stylesheet" href="Tienda.css">
 </head>
-
 <body>
+  <section>
+    <h1>¡Bienvenido! ¿Que te gustaria comprar?</h1>
+    <ul>
+      <li onclick="comprar(remera)">Remera</li>
+      <li onclick="comprar(buzo)">Buzo</li>
+      <li onclick="comprar(short)">Short legendario</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Mi billetera</h2>
+    <ul id="billetera"></ul>
+    <h2 id="oro">Oro:<span></span></h2>
+  </section>
   <script src="Tienda-de-ropa.js"></script>
-  <button onclick="TiendaDeRopa()">Abrir Tienda</button>
 </body>
-
 </html>

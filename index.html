@@ -7,19 +7,24 @@
   <title>Tienda Og's</title>
   <link rel="stylesheet" href="Tienda.css">
 </head>
+
 <body>
+  <!-- Productos -->
+  <main>
+    <input id="inputBuscar" type="text" placeholder="Buscar productos">
+    <div id="productos">
+      <!-- Aca va a ir el catalogo -->
+    </div>
+  </main>
+
   <section>
-    <h1>¡Bienvenido! ¿Que te gustaria comprar?</h1>
-    <ul>
-      <li onclick="comprar(remera)">Remera</li>
-      <li onclick="comprar(buzo)">Buzo</li>
-      <li onclick="comprar(short)">Short legendario</li>
-    </ul>
-  </section>
-  <section>
-    <h2>Mi billetera</h2>
-    <ul id="billetera"></ul>
-    <h2 id="oro">Oro:<span></span></h2>
+    <h1>
+      <span id="cantidadProductos"></span>
+    </h1>
+    <div id="carrito">
+      <!-- Aca van a estar los productos de carrito -->
+    </div>
+    <h2>Total: $<span id="totalCarrito">0</span></h2>
   </section>
   <script src="Tienda-de-ropa.js"></script>
 </body>

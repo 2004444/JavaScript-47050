@@ -1,4 +1,4 @@
-//Clase para los productos se la aplicacion
+//Clase para los productos de la aplicacion
 class Producto {
   constructor(id, nombre, precio, categoria, imagen) {
     this.id = id;
@@ -50,7 +50,7 @@ const divProductos = document.querySelector("#productos");
 const divCarrito = document.querySelector("#carrito");
 const inputBuscar = document.querySelector("#inputBuscar");
 
-class carrito{
+class Carrito{
   constructor(){
     const carritoStorage = localStorage.getItem("carrito");
     //Array donde van a estar los productos del carrito
@@ -129,8 +129,11 @@ class carrito{
 //iniciamos la base de datos
 const bd = new BaseDeDatos();
 
+//Instanciamos la clase producto
+const producto = new Producto()
+
 //Instanciamos la clase carrito
-const Carrito = new carrito();
+const carrito = new Carrito();
 
 cargarProductos(bd.traerRegistros());
 
@@ -141,13 +144,16 @@ function cargarProductos(productos){
   for (const producto of productos){
     divProductos.innerHTML += `
       <div class="producto">
-        <h2>${producto.nombre}</h2>
-        <p class="precio">${producto.precio}</p>
-        <div class="imagen">
-           <img src="img/${producto.imagen}">
-       </div>
-       <a href="#" class="btnAgregar" data-id="${producto.id}">Agregar al carrito</a>
-      </div>
+      <div class="card">
+  <img src="img/${producto.imagen}" class="card-img-top" alt="...">
+
+  <div class="card-body">
+    <h5 class="card-title">${producto.nombre}</h5>
+    <p class="card-text">${producto.precio}</p>
+    <a href="#" class="btn btn-primary" data-id="${producto.id}">Añadir al carrito</a>
+    <a href="#" class="btn btn-primary" data-id="${producto.id}">Quitar del carrito</a>
+  </div>
+</div>
     `; 
   }
 
@@ -162,7 +168,7 @@ function cargarProductos(productos){
       //Uso el metodo de la base de datos para ubicar el producto segun el ID
       constproducto = bd.registroPorId(idProducto);
       //
-      Carrito.agregar(Producto);
+      Carrito.agregar(producto);
     });
   }
 }

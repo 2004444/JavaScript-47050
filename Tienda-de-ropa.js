@@ -52,8 +52,7 @@ const inputBuscar = document.querySelector("#inputBuscar");
 
 class Carrito{
   constructor(){
-    const carritoStorage = localStorage.getItem("carrito");
-    JSON.parse(localStorage.getItem("carrito"));
+    const carritoStorage = JSON.parse(localStorage.getItem("carrito"));
 
     //Array donde van a estar los productos del carrito
     this.carrito = carritoStorage || [];
@@ -91,6 +90,7 @@ class Carrito{
     //Y sino, borramos del carrito el producto a quitar
      this.carrito.splice(indice, 1);
     }
+    localStorage.setItem("carrito", JSON.stringify(this.carrito))
     this.listar();
   }
   
@@ -154,7 +154,6 @@ function cargarProductos(productos){
     <h5 class="card-title">${producto.nombre}</h5>
     <p class="card-text">${producto.precio}</p>
     <a href="#" class="btn btn-primary btnAgregar" data-id="${producto.id}">Añadir al carrito</a>
-    <a href="#" class="btn btn-primary" data-id="${producto.id}">Quitar del carrito</a>
   </div>
 </div>
     `; 
@@ -171,7 +170,7 @@ function cargarProductos(productos){
       //Uso el metodo de la base de datos para ubicar el producto segun el ID
       const producto = bd.registroPorId(idProducto);
       //
-      carrito.agregar(Producto);
+      carrito.agregar(producto);
     });
   }
 }

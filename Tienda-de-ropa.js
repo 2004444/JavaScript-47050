@@ -53,15 +53,18 @@ const inputBuscar = document.querySelector("#inputBuscar");
 class Carrito{
   constructor(){
     const carritoStorage = localStorage.getItem("carrito");
+    JSON.parse(localStorage.getItem("carrito"));
+
     //Array donde van a estar los productos del carrito
     this.carrito = carritoStorage || [];
     this.total = 0; // Total de los precios de todos los productos
     this.cantidadProductos = 0; //La cantidad de productos que tenemos en el carrito  
+    this.listar()
   }
   
   //
   estaEnCarrito({ id }){
-    return this.carrito.find((producto) => producto.id === productoEnCarrito.id);
+    return this.carrito.find((producto) => producto.id === id);
 
   }
 
@@ -150,7 +153,7 @@ function cargarProductos(productos){
   <div class="card-body">
     <h5 class="card-title">${producto.nombre}</h5>
     <p class="card-text">${producto.precio}</p>
-    <a href="#" class="btn btn-primary" data-id="${producto.id}">Añadir al carrito</a>
+    <a href="#" class="btn btn-primary btnAgregar" data-id="${producto.id}">Añadir al carrito</a>
     <a href="#" class="btn btn-primary" data-id="${producto.id}">Quitar del carrito</a>
   </div>
 </div>
@@ -166,9 +169,9 @@ function cargarProductos(productos){
       //Guardo el dataset ID que esta en el HTML del boton Agregar al carrito
       const idProducto = +boton.dataset.id;
       //Uso el metodo de la base de datos para ubicar el producto segun el ID
-      constproducto = bd.registroPorId(idProducto);
+      const producto = bd.registroPorId(idProducto);
       //
-      Carrito.agregar(producto);
+      carrito.agregar(Producto);
     });
   }
 }

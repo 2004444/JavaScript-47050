@@ -1,3 +1,8 @@
+main{
+    padding: 0px;
+    margin: 0%;
+}
+
 #inputBuscar{
     display: flex;
     justify-content: center;
@@ -17,14 +22,90 @@
 }
 
 .card{
-    width: 350px;
-    display: inline-flex;
+    width: 340px;
+    display: inline-block;
     align-items: center;
     justify-content: space-between;
-    margin-left: 550px;
+    margin-left: 10px;
     margin-bottom: 10px;
     margin-top: 10px;
     box-shadow: #348adb;
+}
+
+.carito{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#productos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.productosCarrito{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+section h1 {
+    position: absolute;
+    top: 20px;
+    right: 200px;
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: rgb(0, 153, 255);
+    box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.2);
+    background: url (".img/carrito.png") no-repeat #244ced;
+    background-size: 60%;
+    background-position: 9px center;
+}
+
+.boton-btnCategoria{
+    display: inline-block;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 25px;
+    cursor: pointer;
+    box-shadow: 0px 1px 14px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-color: rgb(0, 128, 255);
+    color: white;
+    border-color: rgb(0, 128, 255);
+    margin-bottom: 15px;
+    transition: all 0.2s;
+}
+
+.botones{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main{
+    background-color: rgb(21, 21, 21);
+}
+
+.botonComprar{
+    cursor: pointer;
+    box-shadow: 0px 1px 14px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-color: rgb(0, 128, 255);
+    color: white;
+    border-color: rgb(0, 128, 255);
+    margin-bottom: 15px;
+    transition: all 0.2s;
+    text-decoration: none;
+}
+
+.total{
+    color: #348adb;
 }
 
 

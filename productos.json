@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "nombre": "Remera",
+        "precio": 500,
+        "categoria": "remeras",
+        "imagen": "ropa og 1.PNG"
+    },
+    {
+        "id": 2,
+        "nombre": "Buzo",
+        "precio": 700,
+        "categoria": "abrigos",
+        "imagen": "Buzo og .PNG"
+    },
+    {
+        "id": 3,
+        "nombre": "Short",
+        "precio": 300,
+        "categoria": "pantalones/shorts",
+        "imagen": "short epico.PNG"
+    },
+    {
+        "id": 4,
+        "nombre": "Remera",
+        "precio": 500,
+        "categoria": "remeras",
+        "imagen": "remera og 1.PNG"
+    },
+    {
+        "id": 5,
+        "nombre": "Buzo blanco",
+        "precio": 700,
+        "categoria": "abrigos",
+        "imagen": "Captura.PNG"
+    }
+]

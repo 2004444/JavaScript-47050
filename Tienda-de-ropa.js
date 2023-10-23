@@ -13,16 +13,13 @@ class BaseDeDatos {
   constructor() {
     //Array para catalogo
     this.productos = [];
-    //Cargar productos
-    this.agregarRegistro(1, "Remera", 500, "Ropa", "ropa og 1.PNG");
-    this.agregarRegistro(2, "Buzo", 700, "Ropa", "Buzo og .PNG");
-    this.agregarRegistro(3, "Short", 300, "Ropa", "short epico.PNG");
+    this.cargarRegistros();
   }
 
-  //Metodo que crea el objeto producto y lo almacena en el Array
-  agregarRegistro(id, nombre, precio, categoria, imagen) {
-    const producto = new Producto(id, nombre, precio, categoria, imagen);
-    this.productos.push(producto);
+  async cargarRegistros(){
+    const resultado = await fetch("../js/productos.json");
+    this.productos = await resultado.json();
+    cargarProductos(this.productos);
   }
 
   //Nos duvuelve el catalogo de productos
@@ -41,6 +38,11 @@ class BaseDeDatos {
       producto.nombre.toLowerCase().includes(palabra.toLowerCase())
     );
   }
+
+
+  registroPorCategoria(categoria){
+    return this.productos.filter((producto) => producto.categoria == categoria);
+  }
 }
 
 //Elementos
@@ -49,6 +51,8 @@ const spanTotalCarrito = document.querySelector("#totalCarrito");
 const divProductos = document.querySelector("#productos");
 const divCarrito = document.querySelector("#carrito");
 const inputBuscar = document.querySelector("#inputBuscar");
+const botonComprar = document.querySelector("#botonComprar");
+const botonesCategorias = document.querySelectorAll(".btnCategoria")
 
 class Carrito{
   constructor(){
@@ -94,6 +98,14 @@ class Carrito{
     this.listar();
   }
   
+  vaciar(){
+    this.total = 0;
+    this.cantidadProductos = 0;
+    this.carrito = [];
+    localStorage.setItem("carrito", JSON.stringify(this.carrito));
+    this.listar();
+  }
+
   //Lista todos los productos del carrito
   listar(){
     this.total = 0;
@@ -113,6 +125,13 @@ class Carrito{
       this.total += producto.precio * producto.cantidad;
       this.cantidadProductos += producto.cantidad;
     }
+
+    if (this.cantidadProductos > 0){
+       botonComprar.style = "block";
+    }else{
+       botonComprar.style = "none";
+    }
+
 
     const botonesQuitar = document.querySelectorAll(".btnQuitar")
 
@@ -137,6 +156,13 @@ const producto = new Producto()
 
 //Instanciamos la clase carrito
 const carrito = new Carrito();
+
+botonesCategorias.forEach((boton)=>{
+  boton.addEventListener("click", ()=>{
+     const producto = bd.registroPorCategoria(boton.dataset.categoria);
+     cargarProductos(producto);
+  });
+});
 
 cargarProductos(bd.traerRegistros());
 
@@ -179,8 +205,20 @@ function cargarProductos(productos){
 
 inputBuscar.addEventListener("input", (event) => {
   event.preventDefault();
+  carrito.vaciar();
   const palabra = inputBuscar.value;
   const producto = bd.registrosPorNombre(palabra);
   cargarProductos(producto);
+})
+
+botonComprar.addEventListener("click", (event) =>{
+  event.preventDefault();
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: 'Tu compra ha sido realizada con exito!',
+    showConfirmButton: false,
+    timer: 15500
+  })
 })
 
